@@ -1,3 +1,7 @@
+#支持server.properties所有配置, 在配置是需要在配置项最前方添加下划线区分(示例: _broker.id: 1)
+#容器运行时默认启动zookeeper, 如果不需要启动zookeeper, 可通过配置(_zookeeper: "false")禁止zookeeper启动
+#容器默认设置分区数20, 网络线程数和IO线程数根据CPU数量自动设置
+#kafka版本为2.3.0
 FROM java:8-alpine
 MAINTAINER djin(273218159@qq.com)
 
