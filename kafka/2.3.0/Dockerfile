@@ -1,7 +1,7 @@
 #支持server.properties所有配置, 在配置是需要在配置项最前方添加下划线区分(示例: _broker.id: 1)
 #容器运行时默认启动zookeeper, 如果不需要启动zookeeper, 可通过配置(_zookeeper: "false")禁止zookeeper启动
 #容器默认设置分区数20, 网络线程数和IO线程数根据CPU数量自动设置
-#kafka版本为2.3.0
+#kafka版本为2.3.0, 系统时区默认为东8区
 FROM java:8-alpine
 MAINTAINER djin(273218159@qq.com)
 
@@ -11,6 +11,9 @@ COPY docker-entrypoint.sh /
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
     && apk --update add --no-cache bash \
+    && apk --update add --no-cache --virtual mytools tzdata \
+    && cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && apk del mytools \
     && ln -s /docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh \
     && mkdir -p /data/logs \
     && chmod +x /usr/local/bin/docker-entrypoint.sh \
