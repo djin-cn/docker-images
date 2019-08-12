@@ -19,6 +19,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && chmod +x /usr/local/bin/docker-entrypoint.sh \
     && wget -P /root http://mirror.bit.edu.cn/apache/kafka/2.3.0/kafka_2.12-2.3.0.tgz \
     && tar -zxvf /root/kafka_2.12-2.3.0.tgz -C /root \
+    && rm -f /root/kafka_2.12-2.3.0.tgz \
     && sed -i "s#group.initial.rebalance.delay.ms=0#group.initial.rebalance.delay.ms=$GROUP_INITIAL_REBALANCE_DELAY_MS#g" /root/kafka_2.12-2.3.0/config/server.properties \
     && sed -i "s#log.dirs=/tmp/kafka-logs#log.dirs=/data/logs/#g" /root/kafka_2.12-2.3.0/config/server.properties \
     #设置network.threads为CPU核数
