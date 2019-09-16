@@ -1,0 +1,100 @@
+version: "3.5"
+services:
+  redis0:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    networks:
+      - app
+    ports:
+      - published: 6379
+        target: 6379
+        mode: host
+
+  redis1:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis1:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - app
+    ports:
+      - published: 7000
+        target: 7000
+        mode: host
+
+  redis2:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis2:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - app
+    ports:
+      - published: 7001
+        target: 7000
+        mode: host
+
+  redis3:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis3:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - app
+    ports:
+      - published: 7002
+        target: 7000
+        mode: host
+
+  redis4:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis4:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - app
+    ports:
+      - published: 7003
+        target: 7000
+        mode: host
+
+  redis5:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis5:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - app
+    ports:
+      - published: 7004
+        target: 7000
+        mode: host
+
+  redis6:
+    image: redis:5.0-alpine
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis6:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - app
+    ports:
+      - published: 7005
+        target: 7000
+        mode: host
+
+networks:
+    app:
+      external: true
